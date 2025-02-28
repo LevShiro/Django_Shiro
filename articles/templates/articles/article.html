@@ -1,0 +1,92 @@
+{% extends 'main/home.html' %}
+{% load static %}
+{% block content_in_main %}
+    <div class="article-view">
+        <span class="autor__article-view">
+            <img src="{{article.autor.photo.url}}" alt="" class="mini-avatar">
+            <span>{{article.autor}}</span>
+        </span>
+        <h4 class="title__article-view">{{article.title}}</h4>
+        <div class="article-info">
+            {% if article.pic %}
+                <div class="wrapper-for-img-in-article">
+                    <img src="{{article.pic.url}}" alt="" width="500px">
+                </div>
+            {% endif %}
+            <p class="text__article-view">{{article.text}}</p>
+            
+            
+            </div>
+        <form method="post" class="form-like">
+            {% csrf_token %}
+            {% if request.user.is_authenticated %}
+            {% if request.user in article.users_liked %}
+            <button type="submit" name="unlike" class="button-like"><span>Убрать из понравившихся</span></button>
+            {% else %}
+                <button name="like_up" class="button-like" type="submit">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M20.808 11.079C19.829 16.132 12 20.5 12 20.5s-7.829-4.368-8.808-9.421C2.227 6.1 5.066 3.5 8 3.5a4.444 4.444 0 0 1 4 2 4.444 4.444 0 0 1 4-2c2.934 0 5.773 2.6 4.808 7.579z"/>
+                    </svg>
+                    <span>Понравилось</span>
+                </button>
+            {% endif %}
+            {% else %}
+                <span>Чтобы оценить запись, надо авторизоваться</span>
+            {% endif %}
+        </form>
+        <div class="delete-article">
+            <form method="post">
+                {% csrf_token %}
+                {% if article.autor == request.user or request.user.is_superuser %}
+                    <button type="submit" name="delete-article">Удалить запись</button>
+                {% endif %}
+            </form>
+        </div>
+        <div class="comments">
+            <h3>Коментарии:</h3>
+            {% for comment in comments %}
+                <div class="comment">
+                    {% if comment.autor_id.photo %}
+                        <img src="{{comment.autor_id.photo.url}}" alt="" class="mini-avatar">
+                    {% else %}
+                        <img src="/media/users/avatars/default.png" alt="" class="mini-avatar">
+                    {% endif %}
+                    <div class="autor-name-and-comment">
+                        {{comment.autor_id.username}}
+                        <span class="user-comment">{{comment.content}}</span>
+                    </div>
+                    <div class="button-delete__comment">
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="button-delete-comment"name="delete-comment" value="{{comment.pk}}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="icon-trash" viewBox="0 0 16 16">
+                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                                    <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                                </svg>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            {% endfor %}
+            
+            <div class="public-comment">
+                {% if request.user.is_authenticated %}
+                <form class="form-comment" method="post">
+                    {% csrf_token %}
+                    {{form.content}}
+                    <button type="submit" value="Оставить коментарий" name="public-comment-button" class="comment-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="airplane" viewBox="0 0 16 16">
+                            <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76z"/>
+                        </svg>
+                    </button>
+                </form>
+                <span>{{errors.null_comment}}</span>
+                {% else %}
+                    <span>Чтобы оставить комментарий, надо авторизоваться</span>
+                {% endif%}
+            </div>
+        </div>
+        
+    </div>      
+
+{% endblock %}

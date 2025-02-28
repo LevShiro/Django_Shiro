@@ -1,0 +1,91 @@
+{% extends 'main/home.html' %}
+{% load static %}
+{% block content_in_main %}
+    {% if user.is_authenticated %}
+        <div class="profile-edit">
+            <div class="profile-edit__block profile-edit__username">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <h3 class="profile-edit__username__title">Имя: <span>{{ user.username }}</span></h3>
+                    {{form_rename.new_username}}
+                    {{form_rename.password}}
+                    <span>{{errors.error_rename}}</span>
+                    <input type="submit" value="Редактировать имя" class="edit-username-button" name="rename-button">
+                </form>
+            </div>
+            <div class="profile-edit__photo profile-edit__block">
+                <h3 class="profile-edit__photo__title">Фото</h3>
+                <div class="photo-block">
+                    {% if user.photo %}
+                        <img src="{{ user.photo.url }}" class="profile__avatar-user" alt="" >
+                    {% else %}
+                        <img src="media/avatars/default.png" class="avatar-user" alt="">
+                    {% endif %}
+                    <form method="post" enctype="multipart/form-data" name="photo_edit">
+                        <span>Редактировать фото:</span>
+                        {% csrf_token %}
+                        {{form.new_photo}}
+                        {{errors.error_photo}}
+                        <input type="submit" value="Сохранить" id="edit-photo-button" name="photo_edit_button">
+                    </form>
+                </div>
+            </div>
+            <div class="profile-edit__articles profile-edit__block">
+                <h3 class="profile-edit__photo__title">Мои записи: </h3>
+                <ul class="articles">
+                    {% for article in articles %}
+                        <li class="article">   
+                            <a href="{% url 'article' article_id=article.id %}" class="link_article">
+                                <div class="article-info">
+                                    
+                                    <div class="container-for-image__profile">
+                                        {% if article.pic %}
+                                            <img src="{{article.pic.url}}" alt="">
+                                        {% else %}
+                                            <img src="media/articles/pic/default.png" alt="">
+                                        {% endif %}
+                                    </div>
+                                    <div class="container-info__article">
+                                        <span class="autor__article">
+                                            <img src="{{article.autor.photo.url}}" alt="" class="mini-avatar">
+                                            {{article.autor}}
+                                        </span>
+                                        <h4 class="title__article">{{article.title}}</h4>
+                                        <p class="text__article">{{article.text}}</p>
+                                        
+                                        <div class="footer-article">
+                                            <span class="likes">
+                                                <div class="wrapper-for-like">
+                                                    <div class="heart-in-articles"></div>
+                                                </div>
+                                                {{article.score_likes}}
+                                            </span>
+                                            <span class="comments-in-articles">
+                                                <img src="{% static '/main/img/icon-comments.png' %}" alt="">
+                                                <span>{{article.score_comments}}</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li> 
+                    {% endfor %}
+                    <li class="article article-add-block__profile">
+                        <a href="{% url 'add_article' %}">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" style="enable-background:new 0 0 128 128" xml:space="preserve">
+                                <path  d="M128 63.954c0 2.006-.797 3.821-2.136 5.127-1.308 1.337-3.125 2.133-5.166 2.133H71.302v49.356c0 4.012-3.284 7.292-7.302 7.292-2.009 0-3.827-.828-5.166-2.134-1.308-1.337-2.136-3.152-2.136-5.159V71.214H7.302c-4.05 0-7.302-3.248-7.302-7.26 0-2.006.797-3.853 2.136-5.159a7.279 7.279 0 0 1 5.166-2.134h49.395V7.306c0-4.012 3.284-7.26 7.302-7.26 2.009 0 3.827.828 5.166 2.133a7.238 7.238 0 0 1 2.136 5.127v49.356h49.395A7.276 7.276 0 0 1 128 63.954z"/>
+                            </svg>
+                            <span>Добавить свою запись</span>
+                        </a>
+                    </li>
+                </ul>
+                
+                
+            </div>
+        </div>
+    {% else %}
+        <div class="if_not_authenticate">
+            <span>{{errors.if_not_aut}}</span>
+        </div>
+    {% endif %}
+{% endblock %}

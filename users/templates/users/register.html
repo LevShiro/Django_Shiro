@@ -1,0 +1,21 @@
+{% extends 'users/login_form.html' %}
+
+{% block login-form %}
+
+{% csrf_token %}
+<span>Пожалуйста введите ваш будущий логин и пароль</span>
+{{ form.username }}
+{{ form.password1 }}
+{{ form.password2 }}
+
+{% if form.errors.username %}
+    <p>Пользователь с таким логином уже есть!</p>
+{% endif %}
+{% if form.errors.password2 %}
+    <p>Введённые пароли не совпадают!</p>
+{% endif %}
+
+
+<input type="submit" value="Зарегистрироваться" class="button-login">
+
+{% endblock %}

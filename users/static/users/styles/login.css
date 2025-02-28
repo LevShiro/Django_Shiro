@@ -1,0 +1,68 @@
+.login__container{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.login__form{
+    border: 1px solid black;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    padding: 40px 24px;
+    min-width: 320px;
+    max-width: 600px;
+    width: 100%;
+    
+    >span{
+        margin-bottom: 30px;
+    }
+    >p{
+        color:#e59e1f;
+        align-self: center;
+        margin-bottom: 20px;
+    }
+}
+.form-input{
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #e59e1f;
+    background-color: inherit;
+    margin-bottom: 30px;
+    font-size: 20px;
+    padding-bottom: 3px;
+}
+#logo_lion{
+    max-width: 300px;
+    height: auto;
+    align-self: center;
+    width: 100%;
+}
+.login_title{
+    align-self: center;
+    font-size: 40px;
+    color: #e59e1f;
+    margin-bottom: 20px;
+}
+.button-login{
+    background-color: inherit;
+    color:#e59e1f;
+    padding: 15px 100px;
+    border: 1px solid black;
+    width: max-content;
+    align-self: center;
+
+}
+.button-login:hover{
+    background-color: #e59e1f;
+    color:black;
+    cursor: pointer;
+}
+.link-reg{
+    align-self: center;
+    margin-bottom: 10px;
+    &:hover{
+        color: #e59e1f;
+    }
+    
+}

@@ -1,0 +1,64 @@
+.article-add-block{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    >form{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+.contrainer-input-image{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    border: 1px dashed #e59e1f;
+    margin-bottom: 30px;
+    >#id_pic{
+        width: 270px;
+    }
+    >span{
+        color: #e59e1f;
+        margin-bottom: 10px;
+    }
+}
+.input-text-article{
+    outline: none;
+    justify-self: center;
+    background: rgba(255, 255, 255, 0.1);
+    resize: none;
+    width: 700px;
+    padding: 5px 8% 0 10px;
+    border: 1px solid #e59e1f;
+    border-radius: 1%;
+}
+.input-title-artice{
+    font-size: 25px;
+    outline: none;
+    justify-self: center;
+    background: rgba(255, 255, 255, 0.1);
+    resize: none;
+    height: 30px;
+    padding: 5px 8% 0 10px;
+    border: 1px solid #e59e1f;
+    border-radius: 1%;
+    margin-bottom: 15px;
+}
+.add-article-button{
+    transition: 0.25s;
+    background-color: inherit;
+    border: 1px solid #199e05;
+    cursor: pointer;
+    padding: 20px;
+    margin-top: 30px;
+    color: #199e05;
+    &:hover{
+        color: white;
+        background-color: #199e05;
+
+    }
+}

@@ -1,0 +1,16 @@
+{% extends 'main/home.html' %}
+
+{% block content_in_main %}
+    <div class="article-add-block">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="contrainer-input-image">
+                <span>Фотография к записи</span>
+                {{form.pic}}
+            </div>
+            {{form.title}}
+            {{form.text}}
+            <input type="submit" value="Опубликовать" name="public_article" class="add-article-button">
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'main/styles/main.css'%}">
+    <link rel="stylesheet" href="{% static 'main/styles/normalize.min.css'%}">
+    <link rel="stylesheet" href="{% static 'users/styles/login.css' %}">
+    <link rel="stylesheet" href="{% static 'profile_app/profile.css'%}">
+    <link rel="stylesheet" href="{% static 'articles/styles/article_add.css'%}">
+    <link rel="stylesheet" href="{% static 'articles/styles/article.css'%}">
+    <link rel="stylesheet" href="">
+    <title>Shiro</title>
+</head>
+<body>
+    {% block content %}{% endblock %}
+    <script src="{% static 'main/scripts/input-height.js' %}"></script>
+    <script src="{% static 'articles/scripts/input-comment.js' %}"></script>
+</body>
+</html>

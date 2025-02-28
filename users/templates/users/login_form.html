@@ -1,0 +1,12 @@
+{% extends 'main/index.html' %}
+{% block content %}
+    {% load static %}
+    <div class="login__container">
+        <form class="login__form" method="post">
+            <img src="{% static 'users/img/logo.png'%}" alt="" id="logo_lion">
+            <h3 class="login_title">SHIRO</h3>
+            {% block login-form %}
+            {% endblock %}
+        </form>
+    </div>
+{% endblock %}

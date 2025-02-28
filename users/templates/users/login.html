@@ -1,0 +1,15 @@
+{% extends 'users/login_form.html' %}
+
+{% block login-form %}
+
+{% csrf_token %}
+<span>Пожалуйста введите логин и пароль</span>
+{{ form.username }}
+{{ form.password }}
+{% if form.errors %}
+    <p>Неправильно введен логин или пароль!</p>
+{% endif %}
+<a href="{% url 'register' %}" class="link-reg">Зарегистрироваться</a>
+<input type="submit" value="Вход" class="button-login">
+
+{% endblock %}
