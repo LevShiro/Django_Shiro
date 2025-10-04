@@ -1,0 +1,29 @@
+.article_change_block{
+    display: none;
+}
+#article_change_button{
+    transition: 0.25s;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: white solid 1px;
+    padding: 5px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    &:hover{
+        border: #4000ff solid 1px;
+        background-color: #4000ff;
+        color: #2c2c2c;
+    }
+}
+#button_cancel_change_article{
+    transition: 0.25s;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: white solid 1px;
+    padding: 20px;
+    cursor: pointer;
+    margin-top: 60px;
+    &:hover{
+        border: #d12e41 solid 1px;
+        background-color: #d12e41;
+        color: #2c2c2c;
+    }
+}

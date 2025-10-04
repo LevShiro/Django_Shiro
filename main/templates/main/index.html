@@ -5,17 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'main/styles/main.css'%}">
+    <link rel="stylesheet" href="{% static 'main/styles/main_800.css'%}">
     <link rel="stylesheet" href="{% static 'main/styles/normalize.min.css'%}">
     <link rel="stylesheet" href="{% static 'users/styles/login.css' %}">
     <link rel="stylesheet" href="{% static 'profile_app/profile.css'%}">
+    <link rel="stylesheet" href="{% static 'profile_app/profile_800.css'%}">
     <link rel="stylesheet" href="{% static 'articles/styles/article_add.css'%}">
     <link rel="stylesheet" href="{% static 'articles/styles/article.css'%}">
+    <link rel="stylesheet" href="{% static 'articles/styles/article_800.css'%}">
+    <link rel="stylesheet" href="{% static 'articles/styles/change_article.css'%}">
     <link rel="stylesheet" href="">
     <title>Shiro</title>
+    <script src="https://unpkg.com/htmx.org@2.0.4" integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+" crossorigin="anonymous"></script>
 </head>
 <body>
     {% block content %}{% endblock %}
     <script src="{% static 'main/scripts/input-height.js' %}"></script>
-    <script src="{% static 'articles/scripts/input-comment.js' %}"></script>
+    <script src="{% static 'articles/scripts/article_change.js' %}"></script>
+    <script src="{% static 'main/scripts/sort_articles.js' %}"></script>
+    
 </body>
 </html>

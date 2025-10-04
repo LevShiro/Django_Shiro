@@ -30,7 +30,9 @@
 .profile-edit__username__title{
     display: flex;
     font-size: 20px;
+    
     align-items: center;
+    margin-bottom: 30px;
     >span{
         font-size: 40px;
         margin-left: 20px;
@@ -61,7 +63,7 @@
     >form{
         display: flex;
         flex-direction: column;
-        margin-left: 50px;
+        
         >span{
             align-self: center;
             margin-bottom: 10px;
@@ -70,6 +72,7 @@
 }
 .profile-edit__photo__title{
     font-size: 30px;
+    margin-bottom: 20px;
 }
 .profile__avatar-user{
     width: 200px;
@@ -146,4 +149,8 @@
     >span{
         color: #e59e1f;
     }
+}
+.profile-edit__my_likes{
+    display: flex;
+    flex-direction: column;
 }

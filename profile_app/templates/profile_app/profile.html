@@ -40,15 +40,20 @@
                                     
                                     <div class="container-for-image__profile">
                                         {% if article.pic %}
-                                            <img src="{{article.pic.url}}" alt="">
+                                            <img src="{{article.pic.url}}" alt="" >
                                         {% else %}
-                                            <img src="media/articles/pic/default.png" alt="">
+                                            <img src="/meida/articles/default.png" alt="" >
                                         {% endif %}
+                                        
                                     </div>
                                     <div class="container-info__article">
-                                        <span class="autor__article">
-                                            <img src="{{article.autor.photo.url}}" alt="" class="mini-avatar">
-                                            {{article.autor}}
+                                        <span class="author__article">
+                                            {% if article.author.photo %}
+                                                <img src="{{article.author.photo.url}}" alt="" class="mini-avatar">
+                                            {% else %}
+                                                <img src="{% static 'main/img/default.png' %}" alt="" class="mini-avatar">
+                                            {% endif %}
+                                            {{article.author}}
                                         </span>
                                         <h4 class="title__article">{{article.title}}</h4>
                                         <p class="text__article">{{article.text}}</p>
@@ -79,8 +84,51 @@
                         </a>
                     </li>
                 </ul>
-                
-                
+            </div>
+            <div class="profile-edit__my_likes profile-edit__block">
+                <h3 class="profile-edit__photo__title">Понравившиеся записи: </h3>
+                <ul class="articles">
+                    {% for article in like_articles %}
+                        <li class="article">   
+                            <a href="{% url 'article' article_id=article.id %}" class="link_article">
+                                <div class="article-info">
+                                    
+                                    <div class="container-for-image__profile">
+                                        {% if article.pic %}
+                                            <img src="{{article.pic.url}}" alt="">
+                                        {% else %}
+                                            <img src="media/articles/pic/default.png" alt="">
+                                        {% endif %}
+                                    </div>
+                                    <div class="container-info__article">
+                                        <span class="author__article">
+                                            {% if article.author.photo %}
+                                                <img src="{{article.author.photo.url}}" alt="" class="mini-avatar">
+                                            {% else %}
+                                                <img src="{% static 'main/img/default.png' %}" alt="" class="mini-avatar">
+                                            {% endif %}
+                                            {{article.author}}
+                                        </span>
+                                        <h4 class="title__article">{{article.title}}</h4>
+                                        <p class="text__article">{{article.text}}</p>
+                                        
+                                        <div class="footer-article">
+                                            <span class="likes">
+                                                <div class="wrapper-for-like">
+                                                    <div class="heart-in-articles"></div>
+                                                </div>
+                                                {{article.score_likes}}
+                                            </span>
+                                            <span class="comments-in-articles">
+                                                <img src="{% static '/main/img/icon-comments.png' %}" alt="">
+                                                <span>{{article.score_comments}}</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li> 
+                    {% endfor %}
             </div>
         </div>
     {% else %}

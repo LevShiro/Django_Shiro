@@ -8,9 +8,10 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        width: 100%;
     }
 }
-.contrainer-input-image{
+.container-input-image{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -20,6 +21,7 @@
     margin-bottom: 30px;
     >#id_pic{
         width: 270px;
+        text-align: center;
     }
     >span{
         color: #e59e1f;
@@ -31,8 +33,9 @@
     justify-self: center;
     background: rgba(255, 255, 255, 0.1);
     resize: none;
-    width: 700px;
-    padding: 5px 8% 0 10px;
+    width: 80%;
+    min-height: 300px;
+    
     border: 1px solid #e59e1f;
     border-radius: 1%;
 }
@@ -43,7 +46,7 @@
     background: rgba(255, 255, 255, 0.1);
     resize: none;
     height: 30px;
-    padding: 5px 8% 0 10px;
+    
     border: 1px solid #e59e1f;
     border-radius: 1%;
     margin-bottom: 15px;

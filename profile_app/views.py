@@ -10,6 +10,7 @@ User = get_user_model()
 @csrf_protect
 def profile_view(request):
     errors = dict()
+    like_articles = ""
     form_avatar=""
     form_rename = ""
     articles = ""
@@ -46,13 +47,18 @@ def profile_view(request):
         else:
             form_rename = EditProfileNameForm()
         #записи пользователя
-        articles = Article.objects.filter(autor=request.user)
+        articles = Article.objects.filter(author=request.user)
+        #понравившиеся записи
+        like_articles = Article.objects.filter(likes = request.user)
     else:
         errors['if_not_aut'] ='Для просмотра своего профиля нужна регистрация!'
-    context = {'form': form_avatar,
-                'form_rename':form_rename,
-                'errors':errors,
-                'articles':articles}
+    context = {
+        'form': form_avatar,
+        'form_rename':form_rename,
+        'errors':errors,
+        'articles':articles,
+        'like_articles':like_articles,
+    }
     
         
     return render(request, 'profile_app/profile.html',context)

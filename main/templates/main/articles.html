@@ -1,43 +1,16 @@
 {% extends 'main/home.html' %}
 {% load static %}
 {% block content_in_main %}
-    <ul class="articles">
-    {% for article in articles %}
-        <li class="article">   
-            <a href="{% url 'article' article_id=article.id %}" class="link_article">
-                <div class="article-info">
-                    
-                    <div class="container-for-image__article">
-                        {% if article.pic %}
-                            <img src="{{article.pic.url}}" alt="">
-                        {% else %}
-                            <img src="media/articles/pic/default.png" alt="">
-                        {% endif %}
-                    </div>
-                    <div class="container-info__article">
-                        <span class="autor__article">
-                            <img src="{{article.autor.photo.url}}" alt="" class="mini-avatar">
-                            {{article.autor}}
-                        </span>
-                        <h4 class="title__article">{{article.title}}</h4>
-                        <p class="text__article">{{article.text}}</p>
-                        
-                        <div class="footer-article">
-                            <span class="likes">
-                                <div class="wrapper-for-like">
-                                    <div class="heart-in-articles"></div>
-                                </div>
-                                {{article.score_likes}}
-                            </span>
-                            <span class="comments-in-articles">
-                                <img src="{% static '/main/img/icon-comments.png' %}" alt="">
-                                <span>{{article.score_comments}}</span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </li> 
-    {% endfor %}
-    </ul>
+    <div class="articles__container">
+        <input type="text" id="article_search__input" placeholder="Поиск записей (чувствителен к регистру)"
+        name="article_search"
+        hx-get="{% url 'article_search'%}"
+        hx-target="#article_searching"
+        hx-trigger="keyup delay:1000ms">
+        <form action="" method="post">
+            {% csrf_token %}
+            {% include 'main/particles/articles_searching.html'%}
+        </form>
+        
+    </div>
 {% endblock %}

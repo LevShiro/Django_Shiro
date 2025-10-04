@@ -9,9 +9,9 @@ User = get_user_model()
 
 class Article(models.Model):
     title = models.CharField(max_length=100)
-    text = models.TextField(null=True,blank=True)
+    text = models.TextField(null=True,blank=True,)
     date = models.DateTimeField(auto_now_add=True)
-    autor = models.ForeignKey(User,on_delete=models.CASCADE,blank=True,default=None)
+    author = models.ForeignKey(User,on_delete=models.CASCADE,blank=True,default=None)
     pic = models.ImageField(upload_to="articles/pic",blank=True,null=True)
     likes = models.ManyToManyField(User,blank=True,related_name='likes')
     def score_likes(self):
@@ -27,7 +27,7 @@ class Comment(models.Model):
     class Meta:
         db_table = "comments"
     article_id = models.ForeignKey(Article,on_delete=models.CASCADE,blank=True)
-    autor_id = models.ForeignKey(User,on_delete=models.CASCADE,blank=True)
+    author_id = models.ForeignKey(User,on_delete=models.CASCADE,blank=True)
     content = models.TextField()
     pub_date = models.DateTimeField(auto_now_add=True)
     

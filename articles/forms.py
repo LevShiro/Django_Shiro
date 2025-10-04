@@ -13,7 +13,7 @@ class ArticleForm(forms.ModelForm):
     }))
     class Meta:
         model = Article
-        fields = ["pic","title","text","autor"]
+        fields = ["pic","title","text","author"]
 
 class CommentForm(forms.ModelForm):
     content = forms.CharField(required=False,widget=forms.Textarea(attrs={
@@ -26,4 +26,10 @@ class CommentForm(forms.ModelForm):
         return False
     class Meta:
         model = Comment
-        fields = ['article_id','autor_id','content']
+        fields = ['article_id','author_id','content']
+        
+class ChangeArticleForm(forms.ModelForm):
+    pic = forms.ImageField(required=False)
+    class Meta:
+        model = Article
+        fields = ['pic']

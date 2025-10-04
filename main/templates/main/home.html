@@ -2,17 +2,37 @@
 {% load static %}
 {% block content %}
 <div class="home__content">
-    
+    <header class="header__content">
+        
+            {% if user.is_authenticated %}
+                    {% if user.photo %}
+                        <img src="{{ user.photo.url }}" class="avatar-user" alt="">
+                    {% else %}
+                        <img src="{% static 'main/img/default.png' %}" class="avatar-user" alt="">
+                    {% endif %}
+                <div class="header__photo-name">
+                    <span class="number_one_in_the_world">{{ user.username }}</span>
+                    <a href="{% url 'logout' %}" class="link-logout-in">Выйти</a>
+                </div>
+            {% else %}
+                    <a href="{% url 'login' %}" class="link-logout-in">Войти</a>
+                
+            {% endif %}
+        
+        <nav class="aside__nav">
+            <li class="aside-nav__item"><a href="{% url 'home' %}" class="link-profile-home">Главная</a></li>
+            <li class="aside-nav__item"><a href="{% url 'profile' %}" class="link-profile-home">Профиль</a></li>
+        </nav>
+    </header>
     <aside class="aside__content">
         <div class="logo__aside">
-
             <img src="{% static 'users/img/logo.png'%}" alt="" id="logo_lion_aside">
             <h3 class="logo_title_aside">SHIRO</h3>
             {% if user.is_authenticated %}
                 {% if user.photo %}
                     <img src="{{ user.photo.url }}" class="avatar-user" alt="">
                 {% else %}
-                    <img src="media/users/avatars/default.png" class="avatar-user" alt="">
+                    <img src="{% static 'main/img/default.png' %}" class="avatar-user" alt="">
                 {% endif %}
                 <span class="number_one_in_the_world">{{ user.username }}</span>
                 <a href="{% url 'logout' %}" class="link-logout-in">Выйти</a>
